@@ -1,0 +1,9 @@
+version: 1.0
+defaultSchema: economy
+schemas:
+  - type: custom
+    name: economy
+    factory: 'hu.webarticum.holodb.calcite.driver.HoloCalciteSchemaFactory'
+    operand:
+      configFile: '/home/horvath/projects/sajat/holodb/git/general-docs/examples/holodb-standalone/config.yaml'
+      schemaName: economy

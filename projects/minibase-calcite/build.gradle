@@ -1,0 +1,13 @@
+plugins {
+    id 'java-library'
+    id 'application'
+}
+
+description "Apache Calcite based execution layer for MiniBase"
+
+dependencies {
+    api "hu.webarticum.minibase:engine:${miniConnectApiVersion}"
+    api "hu.webarticum.minibase:storage:${miniConnectApiVersion}"
+    api "hu.webarticum.miniconnect.api:lang:${miniConnectApiVersion}"
+    api 'org.apache.calcite:calcite-core:1.35.0'
+}

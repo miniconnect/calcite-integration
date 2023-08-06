@@ -1,0 +1,33 @@
+plugins {
+    id 'java-library'
+    id 'application'
+}
+
+description "HoloDB for Apache Calcite"
+
+dependencies {
+    implementation project(':minibase-calcite')
+    implementation "hu.webarticum.holodb:app:${holodbVersion}"
+    implementation "hu.webarticum.holodb:config:${holodbVersion}"
+    implementation "hu.webarticum.miniconnect:jdbc-adapter:${miniConnectVersion}"
+    implementation "hu.webarticum.miniconnect.client:client:${miniConnectClientVersion}"
+    implementation "hu.webarticum.miniconnect.client:repl:${miniConnectClientVersion}"
+    implementation 'sqlline:sqlline:1.12.0'
+}
+
+task runSqlline(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'sqlline.SqlLine'
+    args '-u', "jdbc:calcite:model=${projectDir}/../../etc/calcite.yaml;unquotedCasing=UNCHANGED;conformance=BABEL", '-n', 'admin', '-p', 'admin'
+    standardInput = System.in
+    systemProperties = [
+        'jline.terminal': 'jline.UnixTerminal',
+        'javax.xml.parsers.DocumentBuilderFactory': 'com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl',
+    ]
+}
+
+task runMiniRepl(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'hu.webarticum.holodb.calcite.launch.ReplMain'
+    standardInput = System.in
+}

@@ -1,0 +1,8 @@
+rootProject.name = 'calcite-integration'
+
+include 'holodb-calcite'
+include 'minibase-calcite'
+
+rootProject.children.each { project ->
+    project.projectDir = new File(settingsDir, "projects/${project.name}")
+}
