@@ -7,7 +7,7 @@ import org.apache.calcite.schema.Schema;
 import org.apache.calcite.schema.SchemaFactory;
 import org.apache.calcite.schema.SchemaPlus;
 
-import hu.webarticum.holodb.app.config.HoloConfig;
+import hu.webarticum.holodb.config.HoloConfig;
 import hu.webarticum.holodb.app.factory.ConfigLoader;
 import hu.webarticum.holodb.app.factory.EngineBuilder;
 import hu.webarticum.minibase.calcite.driver.MinibaseCalciteSchema;
