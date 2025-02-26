@@ -7,7 +7,7 @@ description "HoloDB for Apache Calcite"
 
 dependencies {
     implementation project(':minibase-calcite')
-    implementation "hu.webarticum.holodb:app:${holodbVersion}"
+    implementation "hu.webarticum.holodb:bootstrap:${holodbVersion}"
     implementation "hu.webarticum.holodb:config:${holodbVersion}"
     implementation "hu.webarticum.miniconnect:jdbc-adapter:${miniConnectVersion}"
     implementation "hu.webarticum.miniconnect.client:client:${miniConnectClientVersion}"

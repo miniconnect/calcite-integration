@@ -8,8 +8,8 @@ import org.apache.calcite.schema.SchemaFactory;
 import org.apache.calcite.schema.SchemaPlus;
 
 import hu.webarticum.holodb.config.HoloConfig;
-import hu.webarticum.holodb.app.factory.ConfigLoader;
-import hu.webarticum.holodb.app.factory.EngineBuilder;
+import hu.webarticum.holodb.bootstrap.factory.ConfigLoader;
+import hu.webarticum.holodb.bootstrap.factory.EngineBuilder;
 import hu.webarticum.minibase.calcite.driver.MinibaseCalciteSchema;
 import hu.webarticum.minibase.engine.impl.SimpleEngine;
 import hu.webarticum.minibase.storage.api.NamedResourceStore;
