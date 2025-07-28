@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-description "Apache Calcite based execution layer for MiniBase"
+description = "Apache Calcite based execution layer for MiniBase"
 
 dependencies {
     api "hu.webarticum.minibase:engine:${miniConnectApiVersion}"

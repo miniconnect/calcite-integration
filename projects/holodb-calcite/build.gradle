@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-description "HoloDB for Apache Calcite"
+description = "HoloDB for Apache Calcite"
 
 dependencies {
     implementation project(':minibase-calcite')
@@ -15,7 +15,7 @@ dependencies {
     implementation 'sqlline:sqlline:1.12.0'
 }
 
-task runSqlline(type: JavaExec) {
+tasks.register('runSqlline', JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'sqlline.SqlLine'
     args '-u', "jdbc:calcite:model=${projectDir}/../../etc/calcite.yaml;unquotedCasing=UNCHANGED;conformance=BABEL", '-n', 'admin', '-p', 'admin'
@@ -26,7 +26,7 @@ task runSqlline(type: JavaExec) {
     ]
 }
 
-task runMiniRepl(type: JavaExec) {
+tasks.register('runMiniRepl', JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'hu.webarticum.holodb.calcite.launch.ReplMain'
     standardInput = System.in
