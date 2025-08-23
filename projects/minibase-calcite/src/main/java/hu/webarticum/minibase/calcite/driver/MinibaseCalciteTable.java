@@ -6,6 +6,7 @@ import java.util.BitSet;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.apache.calcite.DataContext;
 import org.apache.calcite.config.CalciteConnectionConfig;
@@ -44,28 +45,33 @@ import hu.webarticum.miniconnect.util.IteratorAdapter;
 
 public class MinibaseCalciteTable implements ModifiableTable, QueryableTable, ScannableTable {
     
-    private final Table table;
+    private final Supplier<Table> tableSupplier;
     
-    
+
     public MinibaseCalciteTable(Table table) {
-        this.table = table;
+        this(() -> table);
+    }
+
+    public MinibaseCalciteTable(Supplier<Table> tableSupplier) {
+        this.tableSupplier = tableSupplier;
     }
 
     
     @Override
     public RelDataType getRowType(RelDataTypeFactory typeFactory) {
-        return new MinibaseCalciteRowType(table, typeFactory);
+        return new MinibaseCalciteRowType(tableSupplier.get(), typeFactory);
     }
 
     @Override
     public Statistic getStatistic() {
+        Table table = tableSupplier.get();
         return Statistics.of(
                 table.size().doubleValue(),
                 Arrays.asList(ImmutableBitSet.fromBitSet(explorePrimaryKeyColumns())));
     }
 
     private BitSet explorePrimaryKeyColumns() {
-        ImmutableList<Column> columns = table.columns().resources();
+        ImmutableList<Column> columns = tableSupplier.get().columns().resources();
         int columnCount = columns.size();
         BitSet result = new BitSet(columnCount);
         for (int i = 0; i < columnCount; i++) {
@@ -139,6 +145,7 @@ public class MinibaseCalciteTable implements ModifiableTable, QueryableTable, Sc
     }
     
     private Iterator<Object[]> createScannerIterator() {
+        Table table = tableSupplier.get();
         return new IteratorAdapter<>(
                 new CounterIterator(table.size()),
                 i -> table.row(i).getAll().toArray());
