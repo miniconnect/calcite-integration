@@ -41,11 +41,11 @@ allprojects {
     group = 'hu.webarticum.holodb.calcite'
     version = automaticVersion
     
-    ext.miniConnectApiVersion = '0.4.0'
-    ext.miniConnectVersion = '0.7.0'
-    ext.miniBaseVersion = '0.4.0'
-    ext.miniConnectClientVersion = '0.4.0'
-    ext.holodbVersion = '0.7.1'
+    ext.miniConnectApiVersion = '0.4.1-SNAPSHOT'
+    ext.miniConnectVersion = '0.7.1-SNAPSHOT'
+    ext.miniBaseVersion = '0.4.1-SNAPSHOT'
+    ext.miniConnectClientVersion = '0.4.1-SNAPSHOT'
+    ext.holodbVersion = '0.7.2-SNAPSHOT'
     
     repositories {
         mavenCentral()
